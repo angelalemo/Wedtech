@@ -12,6 +12,7 @@ function displayProducts(filteredProducts = products) {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p><strong>Category:</strong> ${product.category}</p>
+            <p><strong>Price:</strong> ${product.price}</p>
             <button onclick="addToCart(${product.id})">Add to Cart</button>
         `;
         container.appendChild(productCard);
@@ -73,6 +74,7 @@ function displayCart() {
                     <h3>${product.name}</h3>
                     <p>${product.description}</p>
                     <p><strong>Category:</strong> ${product.category}</p>
+                    <p><strong>Price:</strong> ${product.price}</p>
                     <p><strong>Quantity:</strong> ${product.quantity}</p>
                     <button onclick="removeFromCart(${product.id})">Remove</button>
                 `;
@@ -115,6 +117,70 @@ function removeFromCart(productId) {
         })
         .catch(err => console.error("Error:", err));
 }
+
+// แสดงหน้า Check-Out
+function displayCheckout() {
+    fetch("http://localhost:3000/checkout")
+        .then(response => response.json())
+        .then(cartData => {
+            const checkoutContainer = document.getElementById("checkoutContainer");
+            checkoutContainer.innerHTML = ""; // ล้างข้อมูลเดิม
+
+            if (cartData.length === 0) {
+                checkoutContainer.innerHTML = "<p>Your cart is empty.</p>";
+                return;
+            }
+
+            let totalPrice = 0;
+
+            cartData.forEach(product => {
+                const productRow = document.createElement("div");
+                productRow.className = "checkout-row";
+                productRow.innerHTML = `
+                    <p><strong>${product.name}</strong> (x${product.quantity}) - $${product.quantity * product.price}</p>
+                    <button onclick="removeFromCart(${product.id}, true)">Remove</button>
+                `;
+                checkoutContainer.appendChild(productRow);
+
+                totalPrice += product.quantity * product.price; // คำนวณราคารวม
+            });
+
+            const totalRow = document.createElement("div");
+            totalRow.className = "total-row";
+            totalRow.innerHTML = `
+                <h3>Total: $${totalPrice}</h3>
+                <button onclick="confirmPayment(${totalPrice})">Pay</button>
+            `;
+            checkoutContainer.appendChild(totalRow);
+        })
+        .catch(err => console.error("Error fetching checkout data:", err));
+}
+
+// ยืนยันการชำระเงิน
+function confirmPayment(totalPrice) {
+    if (confirm(`The total price is $${totalPrice}. Do you want to proceed?`)) {
+        alert("Payment successful!");
+        clearCart(); // ล้างตะกร้าหลังชำระเงิน
+    }
+}
+
+// ล้างตะกร้าหลังชำระเงิน
+function clearCart() {
+    fetch("http://localhost:3000/cart", {
+        method: "DELETE"
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Cart cleared.");
+                displayCart(); // อัปเดตการแสดงผลของตะกร้า
+                displayCheckout(); // อัปเดตการแสดงผลในหน้าชำระเงิน
+            } else {
+                alert("Error clearing cart.");
+            }
+        })
+        .catch(err => console.error("Error:", err));
+}
+
 
 // โหลดสินค้าเมื่อเปิดหน้าเว็บ
 displayProducts();

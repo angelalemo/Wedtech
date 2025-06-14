@@ -74,6 +74,7 @@ function displayCart() {
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p><strong>Category:</strong> ${product.category}</p>
+            <p><strong>Quantity:</strong> ${product.price}</p>
             <button onclick="removeFromCart(${product.id})">Remove</button>
         `;
         container.appendChild(productCard);

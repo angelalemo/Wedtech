@@ -89,6 +89,29 @@ app.delete("/cart/:id", (req, res) => {
     });
 });
 
+app.get("/checkout", (req, res) => {
+    fs.readFile(cartFilePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading cart file:", err);
+            return res.status(500).send("Could not read cart file.");
+        }
+
+        const cart = JSON.parse(data || "[]");
+        res.json(cart);
+    });
+});
+
+app.delete("/cart", (req, res) => {
+    fs.writeFile(cartFilePath, "[]", "utf8", (err) => {
+        if (err) {
+            console.error("Error clearing cart file:", err);
+            return res.status(500).send("Could not clear cart.");
+        }
+
+        res.send("Cart cleared successfully.");
+    });
+});
+
 // เริ่มเซิร์ฟเวอร์
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
