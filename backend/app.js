@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "data")));
 
 // เส้นทางของไฟล์ JSON
-const cartFilePath = path.join(__dirname, "data", "cart.json");
+const cartFilePath = path.join(__dirname, "data/cart.json");
 
 // อ่านตะกร้าสินค้าจากไฟล์
 app.get("/cart", (req, res) => {
@@ -29,6 +29,40 @@ app.get("/cart", (req, res) => {
 
 // บันทึกตะกร้าสินค้าไปยังไฟล์
 app.post("/cart", (req, res) => {
+    const newCartData = req.body;
+
+    // อ่านข้อมูลเก่าจาก cart.json
+    fs.readFile(cartFilePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Error reading cart file:", err);
+            return res.status(500).send("Could not read cart file.");
+        }
+
+        const currentCart = JSON.parse(data || "[]");
+
+        // รวมสินค้าใหม่กับสินค้าที่มีอยู่ในตะกร้า
+        newCartData.forEach(newItem => {
+            const existingItem = currentCart.find(item => item.id === newItem.id);
+            if (existingItem) {
+                existingItem.quantity += newItem.quantity; // อัปเดตจำนวนสินค้า
+            } else {
+                currentCart.push(newItem); // เพิ่มสินค้าใหม่
+            }
+        });
+
+        // เขียนข้อมูลใหม่กลับไปยัง cart.json
+        fs.writeFile(cartFilePath, JSON.stringify(currentCart, null, 2), "utf8", (err) => {
+            if (err) {
+                console.error("Error saving cart file:", err);
+                return res.status(500).send("Could not save cart file.");
+            }
+
+            res.send("Cart updated successfully.");
+        });
+    });
+});
+
+app.post("/add-to-cart", (req, res) => {
     const newCartData = req.body;
 
     // อ่านข้อมูลเก่าจาก cart.json

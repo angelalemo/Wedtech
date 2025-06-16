@@ -9,14 +9,28 @@ function displayProducts(filteredProducts = products) {
         const productCard = document.createElement("div");
         productCard.className = "product-card";
         productCard.innerHTML = `
-            <h3>${product.name}</h3>
-            <p>${product.description}</p>
-            <p><strong>Category:</strong> ${product.category}</p>
-            <p><strong>Price:</strong> ${product.price}</p>
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
+        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+          <div class="item">
+            <div class="thumb">
+              <a href="product-details.html"><img src="${product.image}" alt=""></a>
+              <span class="price">${product.price}</span>
+            </div>
+            <div class="down-content">
+              <span class="category">${product.category.join(", ")}</span>
+              <h4>${product.name}</h4>
+              <a onclick="viewProductDetail(${product.id})"><i class="fa fa-shopping-bag"></i></a>
+            </div>
+          </div>
+        </div>
         `;
         container.appendChild(productCard);
     });
+}
+
+// ฟังก์ชันสำหรับแสดงรายละเอียดสินค้าในหน้าใหม่
+function viewProductDetail(productId) {
+    // ไปยังหน้ารายละเอียดพร้อมส่ง id ผ่าน URL
+    window.location.href = `productDetail.html?id=${productId}`;
 }
 
 // กรองสินค้าโดยหมวดหมู่
@@ -25,7 +39,7 @@ function filterByCategory(category) {
         displayProducts(products);
         return;
     }
-    const filteredProducts = products.filter(product => product.category === category);
+    const filteredProducts = products.filter(product => product.category && product.category.includes(category));
     displayProducts(filteredProducts);
 }
 
