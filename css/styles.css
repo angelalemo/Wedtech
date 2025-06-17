@@ -29,6 +29,10 @@ body {
     text-decoration: none;
 }
 
+.item {
+  width: 100%;
+  max-width: 100%;
+}
 
 .section {
     padding: 2rem;
