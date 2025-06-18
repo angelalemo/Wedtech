@@ -1,0 +1,15 @@
+header svg{
+    width: 30px;
+    padding: 1px 0;
+}
+header .container .row .col-12 .main-nav .icon-cart span{
+    display: flex;
+    width: 38px;
+    height: 30px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50%;
+
+}
