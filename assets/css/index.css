@@ -1,6 +1,9 @@
-header svg{
-    width: 30px;
+header .container .row .col-12 .main-nav .icon-cart svg{
+    width: 35px;
     padding: 1px 0;
+}
+header .container .row .col-12 .main-nav .icon-cart {
+    bottom: 50px;
 }
 header .container .row .col-12 .main-nav .icon-cart span{
     display: flex;
@@ -11,5 +14,6 @@ header .container .row .col-12 .main-nav .icon-cart span{
     align-items: center;
     color: white;
     border-radius: 50%;
-
+    top: 50%;
+    right: -20px;
 }
