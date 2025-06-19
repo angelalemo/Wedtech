@@ -1,15 +1,15 @@
 let cart = [];
 
+const trendingBox = document.querySelector(".row.trending-box");
+
 // แสดงสินค้าทั้งหมด
 function displayProducts(filteredProducts = products) {
     const container = document.getElementById("productsContainer");
     container.innerHTML = "";
 
     filteredProducts.forEach(product => {
-        const productCard = document.createElement("div");
-        productCard.className = "product-card";
-        productCard.innerHTML = `
-        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6 adv">
+        const productCard = `
+        <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
           <div class="item">
             <div class="thumb">
               <a href="product-details.html"><img src="${product.image}" alt=""></a>
@@ -21,11 +21,25 @@ function displayProducts(filteredProducts = products) {
               <a onclick="viewProductDetail(${product.id})"><i class="fa fa-shopping-bag"></i></a>
             </div>
           </div>
-        </div>
-        `;
-        container.appendChild(productCard);
+        </div>`;
+        container.innerHTML += productCard; // เพิ่ม HTML ลง container
     });
-}
+
+    const footerHTML = `
+    <footer>
+        <div class="container">
+            <div class="col-lg-12">
+                <p>Copyright © 2048 LUGX Gaming Company. All rights reserved.
+                    &nbsp;&nbsp;<a rel="nofollow" href="https://templatemo.com" target="_blank">Design: TemplateMo</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    `;
+    container.innerHTML += footerHTML;  
+
+}  
+
 
 // ฟังก์ชันสำหรับแสดงรายละเอียดสินค้าในหน้าใหม่
 function viewProductDetail(productId) {
@@ -163,7 +177,8 @@ function displayCheckout() {
             totalRow.className = "total-row";
             totalRow.innerHTML = `
                 <h3>Total: $${totalPrice}</h3>
-                <button onclick="confirmPayment(${totalPrice})">Pay</button>
+                <button onclick="confirmPayment(${totalPrice} class="payment")">Pay</button>
+                <button onclick="clearCart()">Clear Cart</button>
             `;
             checkoutContainer.appendChild(totalRow);
         })
@@ -172,9 +187,12 @@ function displayCheckout() {
 
 // ยืนยันการชำระเงิน
 function confirmPayment(totalPrice) {
+    console.log("Total Price:", totalPrice);
     if (confirm(`The total price is $${totalPrice}. Do you want to proceed?`)) {
         alert("Payment successful!");
         clearCart(); // ล้างตะกร้าหลังชำระเงิน
+    }else{
+        alert("Payment canceled.");
     }
 }
 

@@ -21,7 +21,6 @@ document.addEventListener("DOMContentLoaded", () => {
 function displayProductDetail(products) {
 
     const container = document.getElementById("productDetailContainer");
-    alert(`Loaded product data: ${products.id}`); // ตรวจสอบข้อมูลที่ดึงมา
     container.innerHTML = `
     <div class="page-heading header-text">
      <div class="container">

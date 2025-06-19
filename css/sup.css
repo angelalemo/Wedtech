@@ -1,0 +1,131 @@
+.trending-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.search-input {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 50px; /* ด้านซ้ายและขวาโค้ง */
+  overflow: hidden;
+}
+
+.search-input input {
+  border: none;
+  padding: 10px 15px;
+  outline: none;
+  font-size: 16px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  flex: 1;
+}
+
+.search-input button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.search-input button:hover {
+  background-color: #0056b3;
+}
+
+
+/* Single Product Section Styling */
+.single-product.section {
+  padding: 50px 0;
+}
+
+.single-product .container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.single-product .left-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.single-product .align-self-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.single-product .align-self-center h4 {
+  font-size: 26px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.single-product .align-self-center .price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #007BFF;
+  margin-bottom: 15px;
+}
+
+.single-product .align-self-center p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.single-product .align-self-center button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.single-product .align-self-center button:hover {
+  background-color: #0056b3;
+}
+
+.single-product .align-self-center ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.single-product .align-self-center ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.single-product .align-self-center ul li span {
+  font-weight: bold;
+  color: #555;
+}
+
+.single-product .align-self-center ul li a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.single-product .align-self-center ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Separator Line Styling */
+.single-product .sep {
+  margin: 30px 0;
+  height: 2px;
+  background-color: #ddd;
+}

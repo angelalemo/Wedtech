@@ -1,14 +1,13 @@
 [
   {
-    "id": 1,
-    "name": "Product 1",
-    "description": "Description 1",
+    "id": 6,
+    "name": "Product 6",
+    "description": "Description 6",
     "category": [
-      "Adventure",
-      "Racing"
+      "Adventure"
     ],
     "price": 100,
-    "image": "assets/images/trending-01.jpg",
-    "quantity": 2
+    "image": "assets/images/top-game-02.jpg",
+    "quantity": 1
   }
 ]
