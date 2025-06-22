@@ -23,5 +23,6 @@
     "url": "https://github.com/angelalemo/Webtech-Project/issues"
   },
   "homepage": "https://github.com/angelalemo/Webtech-Project#readme",
-  "description": "3. Features to develop\r - Implement at least three of the most important and required features for e-commerce, for\r example:"
+  "description": "3. Features to develop\r - Implement at least three of the most important and required features for e-commerce, for\r example:",
+  "devDependencies": {}
 }

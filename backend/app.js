@@ -9,6 +9,7 @@ const PORT = 3000;
 
 // ใช้ Middleware
 app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "data")));
 
@@ -145,6 +146,10 @@ app.delete("/cart", (req, res) => {
         res.send("Cart cleared successfully.");
     });
 });
+// Register User account
+app.use(express.static(path.join(__dirname, 'public')));
+const userRoutes = require('./routes/user');
+app.use('/', userRoutes);
 
 // เริ่มเซิร์ฟเวอร์
 app.listen(PORT, () => {
