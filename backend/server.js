@@ -10,9 +10,8 @@ app.use('/api', productsRoute);
 
 
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, '../admin.html')); 
+  res.sendFile(path.join(__dirname, '../admin.html'));
 });
-
 
 
 app.listen(3000, () => {
