@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = 4000;
 
 // ใช้ Middleware
 app.use(cors());
@@ -146,10 +146,11 @@ app.delete("/cart", (req, res) => {
         res.send("Cart cleared successfully.");
     });
 });
+
 // Register User account
-app.use(express.static(path.join(__dirname, 'public')));
-const userRoutes = require('./routes/user');
-app.use('/', userRoutes);
+//app.use(express.static(path.join(__dirname, 'public')));
+//const userRoutes = require('./routes/user');
+//app.use('/', userRoutes);
 
 // เริ่มเซิร์ฟเวอร์
 app.listen(PORT, () => {

@@ -1,0 +1,50 @@
+[
+  {
+    "firstName": "mark",
+    "lastName": "zuck",
+    "email": "homyai@gmail.com",
+    "password": "haha"
+  },
+  {
+    "firstName": "koka",
+    "lastName": "yoada",
+    "email": "jjjaka@gmail.com",
+    "password": "hjkl;'"
+  },
+  {
+    "firstName": "kokadfg",
+    "lastName": "yoada",
+    "email": "hahaah@gmail.com",
+    "password": "dfgh"
+  },
+  {
+    "firstName": "kokadfg",
+    "lastName": "yoada",
+    "email": "hahaaha@gmail.com",
+    "password": "gsfssgsg"
+  },
+  {
+    "firstName": "fghj",
+    "lastName": "dfghjk",
+    "email": "jjjakaad@gmail.com",
+    "password": "dfghdfg"
+  },
+  {
+    "firstName": "xcvbf",
+    "lastName": "gfhjkl",
+    "email": "sdgfhjhkl@gmail.com",
+    "password": "dfgh"
+  },
+  {
+    "firstName": "xcvbf",
+    "lastName": "gfhjkl",
+    "email": "sdgfhdfjhkl@gmail.com",
+    "password": "dfdgfh"
+  },
+  {
+    "firstName": "dfgh",
+    "lastName": "sadfgh",
+    "email": "sADGHFJHG@gamil.com",
+    "password": "SADFG"
+  }
+]

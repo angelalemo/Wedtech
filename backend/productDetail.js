@@ -80,7 +80,7 @@ function addToCart(productId) {
 }
 
 function saveCartToFile() {
-    fetch("http://localhost:3000/cart", {
+    fetch("http://localhost:4000/cart", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

@@ -9,5 +9,17 @@
     "price": 100,
     "image": "assets/images/top-game-02.jpg",
     "quantity": 1
+  },
+  {
+    "id": 3,
+    "name": "Product 3",
+    "description": "Description 3",
+    "category": [
+      "Strategy",
+      "Racing"
+    ],
+    "price": 300,
+    "image": "assets/images/trending-03.jpg",
+    "quantity": 2
   }
 ]
