@@ -62,6 +62,14 @@ function displayProductDetail(products) {
 
 let cart = [];
 function addToCart(productId) {
+  // ตรวจสอบสถานะล็อกอิน
+  const token = localStorage.getItem("authToken");
+  if (!token || token.trim() === "") {
+    alert("Please log in to add products to the cart.");
+    window.location.href = "SignIn.html";
+    return;
+  }
+    
     const product = products.find(p => p.id === productId);
     const existingProduct = cart.find(p => p.id === productId);
 
@@ -80,10 +88,17 @@ function addToCart(productId) {
 }
 
 function saveCartToFile() {
+    const token = localStorage.getItem("authToken");
+    if (!token || token.trim() === "") {
+    alert("Please log in to add products to the cart.");
+    window.location.href = "SignIn.html";
+    return;
+    }; // นำ Token จากการล็อกอินมาใช้
     fetch("http://localhost:4000/cart", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}` // เพิ่ม Token ใน Header
         },
         body: JSON.stringify(cart) // ส่งตะกร้าทั้งหมดไปยังเซิร์ฟเวอร์
     })

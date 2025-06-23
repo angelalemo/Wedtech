@@ -4,6 +4,7 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
     "sqlite3": "^5.1.7"
   },
   "name": "webtech-project",
@@ -23,6 +24,5 @@
     "url": "https://github.com/angelalemo/Webtech-Project/issues"
   },
   "homepage": "https://github.com/angelalemo/Webtech-Project#readme",
-  "description": "3. Features to develop\r - Implement at least three of the most important and required features for e-commerce, for\r example:",
-  "devDependencies": {}
+  "description": "3. Features to develop\r - Implement at least three of the most important and required features for e-commerce, for\r example:"
 }

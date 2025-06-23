@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
+const jwt = require("jsonwebtoken");
+const secretKey = "your_secret_key";
 
 const app = express();
 const PORT = 4000;
@@ -15,6 +17,24 @@ app.use(express.static(path.join(__dirname, "data")));
 
 // เส้นทางของไฟล์ JSON
 const cartFilePath = path.join(__dirname, "data/cart.json");
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!token) {
+        return res.status(401).send("Access denied. No token provided.");
+    }
+
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            return res.status(403).send("Invalid token.");
+        }
+
+        req.user = user; // เก็บข้อมูลผู้ใช้ที่ถูกถอดรหัสจาก Token
+        next();
+    });
+}
 
 // อ่านตะกร้าสินค้าจากไฟล์
 app.get("/cart", (req, res) => {
@@ -147,10 +167,53 @@ app.delete("/cart", (req, res) => {
     });
 });
 
-// Register User account
-//app.use(express.static(path.join(__dirname, 'public')));
-//const userRoutes = require('./routes/user');
-//app.use('/', userRoutes);
+
+const usersFile = path.join(__dirname, "data", "users.json");
+
+// Helper functions
+const readUsers = () => {
+  if (!fs.existsSync(usersFile)) return [];
+  return JSON.parse(fs.readFileSync(usersFile));
+};
+
+const writeUsers = (users) => {
+  fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
+};
+
+// Register route
+app.post("/", (req, res) => {
+  const { firstName, lastName, email, password, occupationCategory, occupation } = req.body;
+  const users = readUsers();
+
+  if (users.find((user) => user.email === email)) {
+    return res.status(400).json({ message: "Email already exists" });
+  }
+
+  const newUser = { firstName, lastName, email, password, occupationCategory, occupation };
+  users.push(newUser);
+  writeUsers(users);
+
+  res.status(201).json({ message: "Registered successfully!" });
+});
+
+// Login route
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  const users = readUsers();
+
+  const user = users.find((user) => user.email === email && user.password === password);
+
+  if (user) {
+    return res.status(200).json({ message: "Login successful!" });
+  }
+
+  res.status(401).json({ message: "Invalid email or password" });
+
+  const token = jwt.sign({ email: user.email }, secretKey, { expiresIn: "1h" });
+
+  res.json({ message: "Login successful", token });
+
+});
 
 // เริ่มเซิร์ฟเวอร์
 app.listen(PORT, () => {

@@ -49,7 +49,13 @@ app.post("/login", (req, res) => {
   }
 
   res.status(401).json({ message: "Invalid email or password" });
+
+  const token = jwt.sign({ email: user.email }, secretKey, { expiresIn: "1h" });
+
+  res.json({ message: "Login successful", token });
+
 });
+
 
 // Start server
 app.listen(PORT, () => {

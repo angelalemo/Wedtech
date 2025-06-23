@@ -59,7 +59,7 @@ https://templatemo.com/tm-589-lugx-gaming
                       <li><a href="index.html">Home</a></li>
                       <li><a href="shop.html">Our Shop</a></li>
                       <li><a href="cart.html" class="active">Cart</a></li>
-                      <li><a href="SignIn.html">Sign In</a></li>
+                      <li><a href="SignIn.html" id="login">Sign In</a></li>
                   </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -115,6 +115,29 @@ https://templatemo.com/tm-589-lugx-gaming
   <script src="assets/js/custom.js"></script>
   <script defer src="backend/products.js"></script>
   <script defer src="backend/script.js"></script>
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+    // ตรวจสอบ Token ใน localStorage
+    const token = localStorage.getItem("authToken");
+
+    const loginElement = document.getElementById("login");
+
+    if (token) {
+        // เมื่อผู้ใช้ล็อกอินแล้ว เปลี่ยนปุ่มเป็นชื่อผู้ใช้หรือลิงก์ออกจากระบบ
+        loginElement.textContent = "Logout";
+        loginElement.href = "#";
+        loginElement.onclick = () => {
+            localStorage.removeItem("authToken"); // ลบ Token ออกจาก localStorage
+            window.location.reload(); // รีเฟรชหน้า
+        };
+    } else {
+        // เมื่อผู้ใช้ยังไม่ได้ล็อกอิน
+        loginElement.textContent = "Sign In";
+        loginElement.href = "SignIn.html";
+    }
+});
+  </script>
   
 
   </body>

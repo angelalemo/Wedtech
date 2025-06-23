@@ -84,7 +84,7 @@ function addToCart(productId) {
 
 // แสดงสินค้าในตะกร้า
 function displayCart() {
-    fetch("http://localhost:3000/cart")
+    fetch("http://localhost:4000/cart")
         .then(response => response.json())
         .then(cartData => {
             const container = document.getElementById("cartContainer");
@@ -114,7 +114,7 @@ function displayCart() {
 
 // บันทึกข้อมูลตะกร้าไปยังไฟล์ JSON
 function saveCartToFile() {
-    fetch("http://localhost:3000/cart", {
+    fetch("http://localhost:4000/cart", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -132,7 +132,7 @@ function saveCartToFile() {
 }
 
 function removeFromCart(productId) {
-    fetch(`http://localhost:3000/cart/${productId}`, {
+    fetch(`http://localhost:4000/cart/${productId}`, {
         method: "DELETE"
     })
         .then(response => {
@@ -148,7 +148,7 @@ function removeFromCart(productId) {
 
 // แสดงหน้า Check-Out
 function displayCheckout() {
-    fetch("http://localhost:3000/checkout")
+    fetch("http://localhost:4000/checkout")
         .then(response => response.json())
         .then(cartData => {
             const checkoutContainer = document.getElementById("checkoutContainer");
@@ -198,7 +198,7 @@ function confirmPayment(totalPrice) {
 
 // ล้างตะกร้าหลังชำระเงิน
 function clearCart() {
-    fetch("http://localhost:3000/cart", {
+    fetch("http://localhost:4000/cart", {
         method: "DELETE"
     })
         .then(response => {
