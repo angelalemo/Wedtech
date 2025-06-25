@@ -10,3 +10,6 @@ const products = [
     { id: 9, name: "Product 9", description: "Description 9", category: ["Adventure", "Racing"], price: 100 , image: "assets/images/top-game-05.jpg"},
     { id: 10, name: "Product 10", description: "Description 10", category: ["Adventure", "Strategy"], price: 200 , image: "assets/images/top-game-06.jpg"}
 ];
+
+
+module.exports = products;
