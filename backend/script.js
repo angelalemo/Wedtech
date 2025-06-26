@@ -177,7 +177,7 @@ function displayCheckout() {
             totalRow.className = "total-row";
             totalRow.innerHTML = `
                 <h3>Total: $${totalPrice}</h3>
-                <button onclick="confirmPayment(${totalPrice} class="payment")">Pay</button>
+                <button onclick="confirmPayment(${totalPrice})">Pay</button>
                 <button onclick="clearCart()">Clear Cart</button>
             `;
             checkoutContainer.appendChild(totalRow);
