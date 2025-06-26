@@ -2,13 +2,19 @@
   {
     "firstName": "mark",
     "lastName": "zuck",
-    "email": "homyai@gmail.com",
+    "email": "user88@gmail.com",
     "password": "haha"
   },
   {
     "firstName": "koka",
     "lastName": "yoada",
-    "email": "jjjaka@gmail.com",
-    "password": "hjkl;'"
+    "email": "user69@gmail.com",
+    "password": "5555"
+  },
+  {
+    "firstName": "mark",
+    "lastName": "ja",
+    "email": "user55@gmail.com",
+    "password": "55555"
   }
 ]

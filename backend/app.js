@@ -18,24 +18,6 @@ app.use(express.static(path.join(__dirname, "data")));
 // เส้นทางของไฟล์ JSON
 const cartFilePath = path.join(__dirname, "data/cart.json");
 
-function authenticateToken(req, res, next) {
-    const authHeader = req.headers["authorization"];
-    const token = authHeader && authHeader.split(" ")[1];
-
-    if (!token) {
-        return res.status(401).send("Access denied. No token provided.");
-    }
-
-    jwt.verify(token, secretKey, (err, user) => {
-        if (err) {
-            return res.status(403).send("Invalid token.");
-        }
-
-        req.user = user; // เก็บข้อมูลผู้ใช้ที่ถูกถอดรหัสจาก Token
-        next();
-    });
-}
-
 // อ่านตะกร้าสินค้าจากไฟล์
 app.get("/cart", (req, res) => {
     fs.readFile(cartFilePath, "utf8", (err, data) => {
@@ -166,6 +148,25 @@ app.delete("/cart", (req, res) => {
         res.send("Cart cleared successfully.");
     });
 });
+
+function authenticateToken(req, res, next) {
+    const authHeader = req.headers["authorization"];
+    const token = authHeader && authHeader.split(" ")[1];
+
+    if (!token) {
+        return res.status(401).send("Access denied. No token provided.");
+    }
+
+    jwt.verify(token, secretKey, (err, user) => {
+        if (err) {
+            return res.status(403).send("Invalid token.");
+        }
+
+        req.user = user; // เก็บข้อมูลผู้ใช้ที่ถูกถอดรหัสจาก Token
+        next();
+    });
+}
+
 
 
 const usersFile = path.join(__dirname, "data", "users.json");
