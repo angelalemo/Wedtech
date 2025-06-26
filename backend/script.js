@@ -12,7 +12,7 @@ function displayProducts(filteredProducts = products) {
         <div class="col-lg-3 col-md-6 align-self-center mb-30 trending-items col-md-6">
           <div class="item">
             <div class="thumb">
-              <a href="product-details.html"><img src="${product.image}" alt=""></a>
+              <a onclick="viewProductDetail(${product.id})"><img src="${product.image}" alt=""></a>
               <span class="price">${product.price}</span>
             </div>
             <div class="down-content">
