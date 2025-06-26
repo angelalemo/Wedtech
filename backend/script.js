@@ -62,7 +62,8 @@ function searchProducts() {
     const query = document.getElementById("searchInput").value.toLowerCase();
     const filteredProducts = products.filter(product =>
         product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
+        product.description.toLowerCase().includes(query) ||
+        product.category.some(category => category.toLowerCase().includes(query))
     );
     displayProducts(filteredProducts);
 }
